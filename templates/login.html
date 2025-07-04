@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+  <form class="col s12 m6 offset-m3" method="post">
+    <h4>Login</h4>
+    <div class="input-field">
+      <input id="username" name="username" type="text" required>
+      <label for="username">Benutzername</label>
+    </div>
+    <div class="input-field">
+      <input id="password" name="password" type="password" required>
+      <label for="password">Passwort</label>
+    </div>
+    <button class="btn waves-effect waves-light" type="submit">Einloggen</button>
+    <p><a href="{{ url_for('register') }}">Registrieren</a></p>
+  </form>
+</div>
+{% endblock %}

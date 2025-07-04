@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h4>Übung hinzufügen</h4>
+<div class="row">
+  <form class="col s12 m6" method="post">
+    <div class="input-field">
+      <input id="name" name="name" type="text" required>
+      <label for="name">Übungsname</label>
+    </div>
+    <button class="btn waves-effect waves-light" type="submit">Hinzufügen</button>
+    <a href="{{ url_for('dashboard') }}" class="btn-flat">Abbrechen</a>
+  </form>
+</div>
+{% endblock %}

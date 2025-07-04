@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<h4>Übung wählen</h4>
+<div class="input-field">
+  <i class="material-icons prefix">search</i>
+  <input id="exercise-search" type="text">
+  <label for="exercise-search">Übung suchen...</label>
+</div>
+<ul id="exercise-list" class="collection">
+  {% for ex in exercises %}
+    <li class="collection-item"><a href="{{ url_for('exercise_view', exercise_id=ex.id) }}">{{ ex.name }}</a></li>
+  {% endfor %}
+</ul>
+
+{% if current_user.is_admin %}
+  <a href="{{ url_for('add_exercise') }}" class="btn"><i class="material-icons left">add</i>Neue Übung</a>
+{% endif %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const input = document.getElementById('exercise-search');
+    input.addEventListener('input', function() {
+      const filter = input.value.toLowerCase();
+      document.querySelectorAll('#exercise-list li').forEach(li => {
+        li.style.display = li.textContent.toLowerCase().includes(filter) ? '' : 'none';
+      });
+    });
+  });
+</script>
+{% endblock %}

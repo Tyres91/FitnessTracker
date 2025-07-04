@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Materialize CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/static/style.css" rel="stylesheet">
+  <title>Fitness Tracker</title>
+</head>
+<body>
+  <nav class="blue darken-2">
+    <div class="nav-wrapper container">
+      <a href="{{ url_for('dashboard') }}" class="brand-logo">FitnessTracker</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        {% if current_user.is_authenticated %}
+          <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, msg in messages %}
+        <div class="card-panel {{ 'red lighten-2' if category=='red' else 'green lighten-2' }} white-text">
+          {{ msg }}
+        </div>
+      {% endfor %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </div>
+
+  <!-- Materialize JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

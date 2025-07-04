@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  fitness:
+    build: .
+    image: fitness-tracker:latest
+    container_name: fitness-tracker
+    ports:
+      - "4040:8000"
+    volumes:
+      - fitness_data:/app/fitness.db
+    environment:
+      SECRET_KEY: "changeme"
+      SQLALCHEMY_DATABASE_URI: "sqlite:///fitness.db"
+    restart: unless-stopped
+
+volumes:
+  fitness_data:
+    driver: local
